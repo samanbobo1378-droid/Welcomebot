@@ -49,22 +49,22 @@ def is_admin(message):
     except:
         return False
 
-# ۱. پاسخ به سلام (فقط کاربران عادی و فقط وقتی پیام خودشون هست، نه وقتی ادمین‌ها دارن جواب می‌دن یا ریپلی می‌کنن)
+# ۱. پاسخ به سلام
 @bot.message_handler(func=lambda message: message.text and not is_admin(message) and message.reply_to_message is None and clean_text(message.text) == 'سلام')
 def send_welcome(message):
     bot.send_message(message.chat.id, "سلام، خوبین ؟\nبه مشهد استار خوش اومدی 💫\nامیدوارم حال دلت خوب باشه 💞", reply_to_message_id=message.message_id)
 
-# ۲. پاسخ به خداحافظ (فقط کاربران عادی و پیام مستقل)
+# ۲. پاسخ به خداحافظ
 @bot.message_handler(func=lambda message: message.text and not is_admin(message) and message.reply_to_message is None and clean_text(message.text) in ['خداحافظ', 'خدافظ', 'بای'])
 def send_goodbye(message):
     bot.send_message(message.chat.id, "چه زود داری میری 🥺", reply_to_message_id=message.message_id)
 
-# ۳. پاسخ به لفت (فقط کاربران عادی و پیام مستقل)
+# ۳. پاسخ به لفت
 @bot.message_handler(func=lambda message: message.text and not is_admin(message) and message.reply_to_message is None and clean_text(message.text) in ['لف', 'لفت'])
 def send_left(message):
     bot.send_message(message.chat.id, "خیلی بدی کجا میری منو تنها میزاری؟ 💔", reply_to_message_id=message.message_id)
 
-if name == 'main':
+if __name__ == '__main__':
     keep_alive()
     t_ping = Thread(target=self_ping)
     t_ping.start()
