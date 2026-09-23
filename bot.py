@@ -69,4 +69,10 @@ if __name__ == '__main__':
     t_ping = Thread(target=self_ping)
     t_ping.start()
     
+    # پاک کردن وب‌هوک قبلی برای جلوگیری از خطای 409
+    try:
+        bot.remove_webhook()
+    except:
+        pass
+        
     bot.infinity_polling()
